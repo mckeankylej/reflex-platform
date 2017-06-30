@@ -686,6 +686,7 @@ let overrideCabal = pkg: f: if pkg == null then null else lib.overrideCabal pkg 
   ghcHEAD = overrideForGhcHEAD (overrideForGhc8 (overrideForGhc (extendHaskellPackages nixpkgs.pkgs.haskell.packages.ghcHEAD)));
   ghc = overrideForGhc8 (overrideForGhc (extendHaskellPackages nixpkgs.pkgs.haskell.packages.ghc802));
   ghc8_0_1 = overrideForGhc8 (overrideForGhc (extendHaskellPackages nixpkgs.pkgs.haskell.packages.ghc801));
+  ghc8_2_1 = overrideForGhcHEAD (overrideForGhc8 (overrideForGhc (extendHaskellPackages nixpkgs.pkgs.haskell.packages.ghc821)));
   ghc7 = overrideForGhc7 (overrideForGhc (extendHaskellPackages nixpkgs.pkgs.haskell.packages.ghc7103));
   ghc7_8 = overrideForGhc7_8 (overrideForGhc (extendHaskellPackages nixpkgs.pkgs.haskell.packages.ghc784));
   ghcIosSimulator64 = overrideForGhcIOS (overrideForGhc (extendHaskellPackages nixpkgsCross.ios.simulator64.pkgs.haskell.packages.ghcHEAD));
@@ -694,7 +695,7 @@ let overrideCabal = pkg: f: if pkg == null then null else lib.overrideCabal pkg 
   ghcIosArm64 = overrideForGhcIOS (overrideForGhc (extendHaskellPackages nixpkgsCross.ios.arm64.pkgs.haskell.packages.ghcHEAD));
   ghcIosArmv7 = overrideForGhcIOS (overrideForGhc (extendHaskellPackages nixpkgsCross.ios.armv7.pkgs.haskell.packages.ghcHEAD));
 in let this = rec {
-  inherit nixpkgs nixpkgsCross overrideCabal extendHaskellPackages foreignLibSmuggleHeaders stage2Script ghc ghcHEAD ghc8_0_1 ghc7 ghc7_8 ghcIosSimulator64 ghcIosArm64 ghcIosArmv7 ghcAndroidArm64 ghcAndroidArmv7a;
+  inherit nixpkgs nixpkgsCross overrideCabal extendHaskellPackages foreignLibSmuggleHeaders stage2Script ghc ghcHEAD ghc8_0_1 ghc8_2_1 ghc7 ghc7_8 ghcIosSimulator64 ghcIosArm64 ghcIosArmv7 ghcAndroidArm64 ghcAndroidArmv7a;
   setGhcLibdir = ghcLibdir: inputGhcjs:
     let libDir = "$out/lib/ghcjs-${inputGhcjs.version}";
         ghcLibdirLink = nixpkgs.stdenv.mkDerivation {
